@@ -78,195 +78,28 @@ public:
 	}
 	
 };
-template <typename T> CVector_<T>::CVector_()
-{
-}
-template <typename T> CVector_<T>::CVector_(int n) : CArray_(n)
-{
-}
-template <typename T> CVector_<T>::~CVector_()
-{
-}
-template <typename T> bool CVector_<T>::IsPositive()
-{
-	int y=0;
-	for (register int i = 0; i<m_nSize; i++)
-	{
-		y=i+1;
-		if(m_array[i]>0)
-		{
-			continue;
-		}
-		if(m_array[i]<0)
-		{
-			return false;
-		}
-	}
-	if(y = m_nSize);
-	{
-		return true;
-	}
-}
-template <typename T> bool CVector_<T>::IsNegative()
-{
-	int y = 0;
-	for (register int i = 0; i<m_nSize; i++)
-	{
-		y=i+1;
-		if(m_array[i]>0)
-		{
-			return false;
-		}
-		if(m_array[i]<0)
-		{
-			continue;
-		}
-	}
-	if(y = m_nSize)
-	{
-		return true;
-	}
-}
-template <typename T> void CVector_<T>::KProduct(CArray_<T> *v, T *k)
-{
-	v->RemoveAll();
-	for(register int i = 0; i<v->GetSize(); i++)
-	{
-		(*v)[i] = (*k)*m_array[i];
-	}
-}
-template <typename T> void CVector_<T>::KProduct(CArray_<T> v, T k)
-{
-	v.RemoveAll();
-	for(register int i = 0; i<v.GetSize(); i++)
-	{
-		v[i]=k*m_array[i];
-	}
-}
-template <typename T> T CVector_<T>::DotProduct(CArray_<T> *u, T *r)
-{
-    *r = 0;
-	if ( u->GetSize() > m_nSize || u->GetSize()< m_nSize )
-	{
-		cout<<"Producto imposible";
-	}
-	else
-	{
-		for (register int i=0; i<u->GetSize(); i++)
-		{
-			(*r) = (*r) + (*u)[i]*(m_array[i]);
-		}
-	}
-	return *r;
-}
-template <typename T> T CVector_<T>::DotProduct(CArray_<T> u, T r)
-{
-    r = 0;
-	if ( u.GetSize() > m_nSize || u.GetSize()< m_nSize )
-	{
-		cout<<"Producto imposible";
-	}
-	else
-	{
-		for (register int i=0; i<u.GetSize(); i++)
-		{
-			r += u[i]*(m_array[i]);
-		}
-	}
-	return r;
-}
-template <typename T> bool CVector_<T>::IsLexPositive(UINT *index, T *Value)
-{
-	for (register int i = 0; i<m_nSize; i++)
-	{
-		if(m_array[i]!=0)
-		{
-			if(m_array[i]>0)
-			{
-				*index = i;
-				*Value = m_array[i];
-				return true;
-     		}
-			if(m_array[i]<0)
-			{
-				return false;
-			}
-		}
-	}
-}
-template <typename T> bool CVector_<T>::IsLexPositive()
-{
-	for (register int i = 0; i<m_nSize; i++)
-	{
-		if(m_array[i]!=0)
-		{
-			if(m_array[i]>0)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-	}
-	return false;
-}
-template <typename T> bool CVector_<T>::IsLexNegative(UINT *index, T *Value)
-{
-	for (register int i = 0; i<m_nSize; i++)
-	{
-		if(m_array[i]!=0)
-		{
-			if(m_array[i]<0)
-			{
-				*index = i;
-				*Value = m_array[i];
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-	}
-	return false;
-}
-template <typename T> bool CVector_<T>::IsLexNegative()
-{
-	for (register int i = 0; i<m_nSize; i++)
-	{
-		if(m_array[i]!=0)
-		{
-			if(m_array[i]<0)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-	}
-	return false;
-}
-template <typename T> bool CVector_<T>::IsZero()
-{
-	int x;
-	for (register int i = 0; i<m_nSize; i++)
-	{
-		if(m_array[i]!=0)
-		{
-			return false;
-		    break;
-		}
-		x=i+1;
-	}
-	if(x=m_nSize)
-	{
-		return true;
-	}
-}
 
+typedef CVector_<float> CVECTOR_FLOAT;
+typedef CVector_<double> CVECTOR_DOUBLE;
 
+class CVECTOR_FLOAT3 : public CVECTOR_FLOAT
+{
+public:
+	CVECTOR_FLOAT3();
+	float x();
+	float y();
+	float z();
+	
+};
+class CVECTOR_FLOAT4 : public CVECTOR_FLOAT
+{
+public:
+	CVECTOR_FLOAT4();
+	float x();
+	float y();
+	float z();
+	float w();
+	
+};
+CVECTOR_FLOAT3 operator*(CVECTOR_FLOAT3 V1, const CVECTOR_FLOAT3 &V2);
 #endif
